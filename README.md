@@ -1,16 +1,27 @@
-# Claude Code Subagents Collection
+# Claude Code & Codex Subagents Collection
 
-A comprehensive collection of 83 specialized AI subagents for [Claude Code](https://docs.anthropic.com/en/docs/claude-code), providing domain-specific expertise across software development, infrastructure, and business operations.
+This repository is a fork of [wshobson/agents](https://github.com/wshobson/agents) maintained to support both Claude Code and OpenAI Codex workflows.
+
+A comprehensive collection of 83 specialized AI subagents for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and [OpenAI Codex](https://platform.openai.com/docs), providing domain-specific expertise across software development, infrastructure, and business operations.
 
 ## Overview
 
-This repository provides production-ready subagents that extend Claude Code's capabilities with specialized knowledge. Each subagent incorporates:
+This repository provides production-ready subagents that extend Claude Code and Codex capabilities with specialized knowledge. Each subagent incorporates:
 
 - Current industry best practices and standards (2024/2025)
 - Production-ready patterns and enterprise architectures
 - Deep domain expertise with 8-12 capability areas per agent
 - Modern technology stacks and frameworks
 - Optimized model selection based on task complexity
+- Dual-environment metadata including recommended `codex_model` hints for OpenAI GPT-based coding tasks
+
+## Codex Support
+
+To make the original Claude-focused prompts work seamlessly with Codex-driven automations:
+
+- Each agent front matter now includes a `codex_model` attribute that maps `opus`, `sonnet`, and `haiku` tiers to `gpt-4.1`, `gpt-4o`, and `gpt-4o-mini` respectively.
+- Integrations can read the new metadata to select the appropriate Codex-compatible model without altering the existing Claude configuration.
+- README tables retain the Claude recommendation for reference; Codex tooling should rely on the `codex_model` field stored in each agent file.
 
 ## Agent Categories
 
@@ -18,7 +29,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Core Architecture
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [backend-architect](backend-architect.md) | opus | RESTful API design, microservice boundaries, database schemas |
 | [frontend-developer](frontend-developer.md) | sonnet | React components, responsive layouts, client-side state management |
@@ -30,7 +41,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### UI/UX & Mobile
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [ui-ux-designer](ui-ux-designer.md) | sonnet | Interface design, wireframes, design systems |
 | [ui-visual-validator](ui-visual-validator.md) | sonnet | Visual regression testing and UI verification |
@@ -42,7 +53,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Systems & Low-Level
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [c-pro](c-pro.md) | sonnet | System programming with memory management and OS interfaces |
 | [cpp-pro](cpp-pro.md) | sonnet | Modern C++ with RAII, smart pointers, STL algorithms |
@@ -51,7 +62,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Web & Application
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [javascript-pro](javascript-pro.md) | sonnet | Modern JavaScript with ES6+, async patterns, Node.js |
 | [typescript-pro](typescript-pro.md) | sonnet | Advanced TypeScript with type systems and generics |
@@ -61,7 +72,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Enterprise & JVM
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [java-pro](java-pro.md) | sonnet | Modern Java with streams, concurrency, JVM optimization |
 | [scala-pro](scala-pro.md) | sonnet | Enterprise Scala with functional programming and distributed systems |
@@ -69,7 +80,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Specialized Platforms
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [elixir-pro](elixir-pro.md) | sonnet | Elixir with OTP patterns and Phoenix frameworks |
 | [unity-developer](unity-developer.md) | sonnet | Unity game development and optimization |
@@ -80,7 +91,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### DevOps & Deployment
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [devops-troubleshooter](devops-troubleshooter.md) | sonnet | Production debugging, log analysis, deployment troubleshooting |
 | [deployment-engineer](deployment-engineer.md) | sonnet | CI/CD pipelines, containerization, cloud deployments |
@@ -89,14 +100,14 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Database Management
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [database-optimizer](database-optimizer.md) | opus | Query optimization, index design, migration strategies |
 | [database-admin](database-admin.md) | sonnet | Database operations, backup, replication, monitoring |
 
 #### Incident Response & Network
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [incident-responder](incident-responder.md) | opus | Production incident management and resolution |
 | [network-engineer](network-engineer.md) | sonnet | Network debugging, load balancing, traffic analysis |
@@ -105,7 +116,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Code Quality & Review
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [code-reviewer](code-reviewer.md) | opus | Code review with security focus and production reliability |
 | [security-auditor](security-auditor.md) | opus | Vulnerability assessment and OWASP compliance |
@@ -116,7 +127,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Testing & Debugging
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [test-automator](test-automator.md) | sonnet | Comprehensive test suite creation (unit, integration, e2e) |
 | [tdd-orchestrator](tdd-orchestrator.md) | sonnet | Test-Driven Development methodology guidance |
@@ -125,7 +136,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Performance & Observability
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [performance-engineer](performance-engineer.md) | opus | Application profiling and optimization |
 | [observability-engineer](observability-engineer.md) | opus | Production monitoring, distributed tracing, SLI/SLO management |
@@ -135,14 +146,14 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Data Engineering & Analytics
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [data-scientist](data-scientist.md) | opus | Data analysis, SQL queries, BigQuery operations |
 | [data-engineer](data-engineer.md) | sonnet | ETL pipelines, data warehouses, streaming architectures |
 
 #### Machine Learning & AI
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [ai-engineer](ai-engineer.md) | opus | LLM applications, RAG systems, prompt pipelines |
 | [ml-engineer](ml-engineer.md) | opus | ML pipelines, model serving, feature engineering |
@@ -151,7 +162,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 ### Documentation & Technical Writing
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [docs-architect](docs-architect.md) | opus | Comprehensive technical documentation generation |
 | [api-documenter](api-documenter.md) | sonnet | OpenAPI/Swagger specifications and developer docs |
@@ -163,7 +174,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Business Analysis & Finance
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [business-analyst](business-analyst.md) | sonnet | Metrics analysis, reporting, KPI tracking |
 | [quant-analyst](quant-analyst.md) | opus | Financial modeling, trading strategies, market analysis |
@@ -171,14 +182,14 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 #### Marketing & Sales
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [content-marketer](content-marketer.md) | sonnet | Blog posts, social media, email campaigns |
 | [sales-automator](sales-automator.md) | haiku | Cold emails, follow-ups, proposal generation |
 
 #### Support & Legal
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [customer-support](customer-support.md) | sonnet | Support tickets, FAQ responses, customer communication |
 | [hr-pro](hr-pro.md) | opus | HR operations, policies, employee relations |
@@ -186,7 +197,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 ### Specialized Domains
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [blockchain-developer](blockchain-developer.md) | sonnet | Web3 apps, smart contracts, DeFi protocols |
 | [payment-integration](payment-integration.md) | sonnet | Payment processor integration (Stripe, PayPal) |
@@ -195,7 +206,7 @@ This repository provides production-ready subagents that extend Claude Code's ca
 
 ### SEO & Content Optimization
 
-| Agent | Model | Description |
+| Agent | Claude Model | Description |
 |-------|-------|-------------|
 | [seo-content-auditor](seo-content-auditor.md) | sonnet | Content quality analysis, E-E-A-T signals assessment |
 | [seo-meta-optimizer](seo-meta-optimizer.md) | haiku | Meta title and description optimization |
@@ -522,6 +533,10 @@ To add a new subagent:
 - Reference previous work or patterns
 - Provide project-specific constraints
 
+## Credits
+This project is forked from [Original Repo](https://github.com/wshobson/agents)  
+Modifications for Codex support by [Watanyuc](https://github.com/Watanyuc)
+
 ## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
@@ -532,3 +547,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - [Subagents Documentation](https://docs.anthropic.com/en/docs/claude-code/sub-agents)
 - [Claude Code GitHub](https://github.com/anthropics/claude-code)
 - [Claude Code Commands](https://github.com/wshobson/commands)
+- [OpenAI Platform Documentation](https://platform.openai.com/docs)
